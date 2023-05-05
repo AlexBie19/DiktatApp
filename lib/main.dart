@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 void main() {
   runApp(const MyApp());
 }
@@ -19,12 +18,14 @@ class MyApp extends StatelessWidget {
 }
 
 class RootPage extends StatefulWidget {
-  // Stateful widgets can refresh the while using the app
+  // Stateful widgets can refresh the App while using it
   const RootPage({super.key});
 
   @override
   State<RootPage> createState() => _RootPageState();
 }
+
+
 
 class _RootPageState extends State<RootPage> {
   int currentPage = 0;
@@ -32,18 +33,12 @@ class _RootPageState extends State<RootPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: HomeBar(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          debugPrint("Floating Action Button");
-        },
-        child: const Icon(Icons.add),
-      ),
-      // Child is always, when you want to add something insider the widget
+      // Child is always needed, when you want to add something inside the widget
       bottomNavigationBar: NavigationBar(
         destinations: const [
           // A list in Flutter need more then one Item inside it otherwise we will get an error
           NavigationDestination(
-            icon: Icon(Icons.home_rounded),
+            icon: Icon(Icons.home),
             label: "Home",
           ),
           NavigationDestination(
