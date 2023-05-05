@@ -1,5 +1,3 @@
-import 'package:diktat_flutter_app/home_page.dart';
-import 'package:diktat_flutter_app/profile_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -60,7 +58,10 @@ class _RootPageState extends State<RootPage> {
             icon: Icon(Icons.brush_rounded),
             label: "Diktat",
           ),
-          NavigationDestination(icon: Icon(Icons.), label: label)
+          NavigationDestination(
+            icon: Icon(Icons.analytics_outlined),
+            label: "Analytics",
+          ),
         ],
         onDestinationSelected: (int index) {
           // Sets the current page index
