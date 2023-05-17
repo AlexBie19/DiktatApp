@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.green),
+      theme: ThemeData(primaryColor: const Color.fromARGB(255, 14, 25, 54)),
       home: const RootPage(),
     );
   }
@@ -25,16 +26,24 @@ class RootPage extends StatefulWidget {
   State<RootPage> createState() => _RootPageState();
 }
 
-
-
 class _RootPageState extends State<RootPage> {
   int currentPage = 0;
+  // Color Palette
+  Color linen = const Color.fromARGB(255, 255, 237, 225); //
+  Color ivory = const Color.fromARGB(255, 249, 251, 242); // Background
+  Color lightCyan = const Color.fromARGB(255, 215, 249, 255); // Teritary
+  Color jordyBlue = const Color.fromARGB(255, 175, 203, 255); // Secondary
+  Color oxfordBlue = const Color.fromARGB(255, 14, 28, 54); // PrimaryColor
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: linen,
       appBar: HomeBar(),
       // Child is always needed, when you want to add something inside the widget
       bottomNavigationBar: NavigationBar(
+        backgroundColor: ivory,
+        shadowColor: jordyBlue,
         destinations: const [
           // A list in Flutter need more then one Item inside it otherwise we will get an error
           NavigationDestination(
