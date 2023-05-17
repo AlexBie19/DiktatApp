@@ -1,5 +1,6 @@
 import 'package:diktat_flutter_app/login_page.dart';
 import 'package:flutter/material.dart';
+import 'app_icons.dart';
 import 'app_colors.dart';
 
 void main() {
@@ -17,13 +18,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(primaryColor: const Color.fromARGB(255, 14, 25, 54)),
       initialRoute: '/',
       routes: {
-        '/':(context) => const Login(),
-        '/home':(context) => const RootPage()
+        '/': (context) => const Login(),
+        '/home': (context) => const RootPage()
       },
     );
   }
 }
-
 
 class RootPage extends StatefulWidget {
   // Stateful widgets can refresh the App while using it
@@ -62,7 +62,7 @@ class _RootPageState extends State<RootPage> {
     ),
   ];
 
-void _onItemTapped(int index) {
+  void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
@@ -78,17 +78,16 @@ void _onItemTapped(int index) {
       appBar: AppBar(),
       // Child is always needed, when you want to add something inside the widget
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: ivory,
         currentIndex: _selectedIndex,
         unselectedItemColor: oxfordBlue,
         selectedItemColor: Colors.amber[800],
         onTap: _onItemTapped,
-        elevation: 10,
         items: const <BottomNavigationBarItem>[
           // A list in Flutter need more then one Item inside it otherwise we will get an error
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: "Home",
-
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_rounded),
@@ -99,12 +98,12 @@ void _onItemTapped(int index) {
             label: "Quiz",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.brush_rounded),
+            icon: Icon(AppIcons.pen_nib, size: 19
+            ),
             label: "Diktat",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.analytics
-            ),
+            icon: Icon(Icons.analytics),
             label: "Analytics",
           ),
         ],
@@ -112,7 +111,6 @@ void _onItemTapped(int index) {
     );
   }
 }
-
 
 class HomeBar extends StatelessWidget with PreferredSizeWidget {
   @override

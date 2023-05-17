@@ -13,7 +13,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ivory,
+      backgroundColor: const Color.fromARGB(255, 249, 251, 242),
       appBar: AppBar(
         title: const Text("Login Page"),
       ),
@@ -24,9 +24,9 @@ class _LoginState extends State<Login> {
               padding: EdgeInsets.only(top: 60.0),
               child: Center(
                 child: SizedBox(
-                    width: 200,
-                    height: 150,
-                    /*decoration: BoxDecoration(
+                  width: 200,
+                  height: 150,
+                  /*decoration: BoxDecoration(
                         color: Colors.red,
                         borderRadius: BorderRadius.circular(50.0)),*/
                 ),
@@ -37,7 +37,13 @@ class _LoginState extends State<Login> {
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 175, 203, 255),
+                            width: 2.5)),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 175, 203, 255))),
                     labelText: 'Email',
                     hintText: 'Enter valid email id as abc@gmail.com'),
               ),
@@ -49,6 +55,13 @@ class _LoginState extends State<Login> {
               child: TextField(
                 obscureText: true,
                 decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 175, 203, 255),
+                            width: 2.5)),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 175, 203, 255))),
                     border: OutlineInputBorder(),
                     labelText: 'Password',
                     hintText: 'Enter secure password'),
@@ -60,7 +73,8 @@ class _LoginState extends State<Login> {
               },
               child: const Text(
                 'Forgot Password',
-                style: TextStyle(color: Color.fromARGB(255, 14, 28, 54), fontSize: 15),
+                style: TextStyle(
+                    color: Color.fromARGB(255, 14, 28, 54), fontSize: 15),
               ),
             ),
             Container(
@@ -70,19 +84,27 @@ class _LoginState extends State<Login> {
                   color: oxfordBlue, borderRadius: BorderRadius.circular(20)),
               child: TextButton(
                 onPressed: () {
-                 Navigator.push(
-                  context, MaterialPageRoute(builder: (_) => const RootPage()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => const RootPage()));
                 },
                 child: const Text(
                   'Login',
-                  style: TextStyle(color: Color.fromARGB(255, 249, 251, 242), fontSize: 25),
+                  style: TextStyle(
+                      color: Color.fromARGB(255, 249, 251, 242), fontSize: 25),
                 ),
               ),
             ),
             const SizedBox(
               height: 130,
             ),
-            const Text('New User? Create Account')
+            TextButton(
+              onPressed: () {},
+              child: const Text(
+                'New User? Create Account',
+                style: TextStyle(
+                    color: Color.fromARGB(255, 14, 28, 54), fontSize: 15),
+              ),
+            )
           ],
         ),
       ),
