@@ -1,4 +1,6 @@
+import 'package:diktat_flutter_app/login_page.dart';
 import 'package:flutter/material.dart';
+import 'app_colors.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,10 +15,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primaryColor: const Color.fromARGB(255, 14, 25, 54)),
-      home: const RootPage(),
+      initialRoute: '/',
+      routes: {
+        '/':(context) => const Login(),
+        '/home':(context) => const RootPage()
+      },
     );
   }
 }
+
 
 class RootPage extends StatefulWidget {
   // Stateful widgets can refresh the App while using it
@@ -28,58 +35,84 @@ class RootPage extends StatefulWidget {
 
 class _RootPageState extends State<RootPage> {
   int currentPage = 0;
-  // Color Palette
-  Color linen = const Color.fromARGB(255, 255, 237, 225); //
-  Color ivory = const Color.fromARGB(255, 249, 251, 242); // Background
-  Color lightCyan = const Color.fromARGB(255, 215, 249, 255); // Teritary
-  Color jordyBlue = const Color.fromARGB(255, 175, 203, 255); // Secondary
-  Color oxfordBlue = const Color.fromARGB(255, 14, 28, 54); // PrimaryColor
+
+  int _selectedIndex = 0;
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text(
+      'Home',
+      style: optionStyle,
+    ),
+    Text(
+      'Profile',
+      style: optionStyle,
+    ),
+    Text(
+      'Quiz',
+      style: optionStyle,
+    ),
+    Text(
+      'Diktat',
+      style: optionStyle,
+    ),
+    Text(
+      'Analytics',
+      style: optionStyle,
+    ),
+  ];
+
+void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: linen,
-      appBar: HomeBar(),
+      backgroundColor: ivory,
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
+      appBar: AppBar(),
       // Child is always needed, when you want to add something inside the widget
-      bottomNavigationBar: NavigationBar(
-        backgroundColor: ivory,
-        shadowColor: jordyBlue,
-        destinations: const [
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        unselectedItemColor: oxfordBlue,
+        selectedItemColor: Colors.amber[800],
+        onTap: _onItemTapped,
+        elevation: 10,
+        items: const <BottomNavigationBarItem>[
           // A list in Flutter need more then one Item inside it otherwise we will get an error
-          NavigationDestination(
+          BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: "Home",
+
           ),
-          NavigationDestination(
+          BottomNavigationBarItem(
             icon: Icon(Icons.person_rounded),
             label: "Profile",
           ),
-          NavigationDestination(
+          BottomNavigationBarItem(
             icon: Icon(Icons.question_mark_rounded),
             label: "Quiz",
           ),
-          NavigationDestination(
+          BottomNavigationBarItem(
             icon: Icon(Icons.brush_rounded),
             label: "Diktat",
           ),
-          NavigationDestination(
-            icon: Icon(Icons.analytics_outlined),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.analytics
+            ),
             label: "Analytics",
           ),
         ],
-        onDestinationSelected: (int index) {
-          // Sets the current page index
-          setState(
-            () {
-              currentPage = index;
-            },
-          );
-        },
-        selectedIndex: currentPage,
       ),
     );
   }
 }
+
 
 class HomeBar extends StatelessWidget with PreferredSizeWidget {
   @override
