@@ -9,7 +9,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   // Statless widget can not refresh while using the app
-  const MyApp({super.key});
+  const MyApp({super.key, });
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,6 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const Login(),
-        '/home': (context) => const RootPage()
       },
     );
   }
@@ -27,8 +26,10 @@ class MyApp extends StatelessWidget {
 
 class RootPage extends StatefulWidget {
   // Stateful widgets can refresh the App while using it
-  const RootPage({super.key});
+  const RootPage({super.key, required this.email});
 
+  final String email;
+  
   @override
   State<RootPage> createState() => _RootPageState();
 }
@@ -112,21 +113,4 @@ class _RootPageState extends State<RootPage> {
   }
 }
 
-class HomeBar extends StatelessWidget with PreferredSizeWidget {
-  @override
-  final Size preferredSize;
 
-  HomeBar({Key? key})
-      : preferredSize = const Size.fromHeight(56.0),
-        super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      title: const Text(
-        'Flutter',
-      ),
-      automaticallyImplyLeading: true,
-    );
-  }
-}

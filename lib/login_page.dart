@@ -10,6 +10,13 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final _formKey = GlobalKey<FormState>();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  String adminKey = "Admin";
+  String passwordKey = "1234";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,6 +25,7 @@ class _LoginState extends State<Login> {
         title: const Text("Login Page"),
       ),
       body: SingleChildScrollView(
+        key: _formKey,
         child: Column(
           children: <Widget>[
             const Padding(
@@ -32,11 +40,12 @@ class _LoginState extends State<Login> {
                 ),
               ),
             ),
-            const Padding(
+            Padding(
               //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
-              padding: EdgeInsets.symmetric(horizontal: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
-                decoration: InputDecoration(
+                controller: emailController,
+                decoration: const InputDecoration(
                     focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                             color: Color.fromARGB(255, 175, 203, 255),
@@ -44,18 +53,19 @@ class _LoginState extends State<Login> {
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                             color: Color.fromARGB(255, 175, 203, 255))),
-                    labelText: 'Email',
-                    hintText: 'Enter valid email id as abc@gmail.com'),
+                    labelText: 'Username',
+                    hintText: 'Enter a valid Username'),
               ),
             ),
-            const Padding(
-              padding:
-                  EdgeInsets.only(left: 15.0, right: 15.0, top: 15, bottom: 0),
+            Padding(
+              padding: const EdgeInsets.only(
+                  left: 15.0, right: 15.0, top: 15, bottom: 0),
               //padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
+                controller: passwordController,
                 obscureText: true,
-                decoration: InputDecoration(
-                  focusedBorder: OutlineInputBorder(
+                decoration: const InputDecoration(
+                    focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                             color: Color.fromARGB(255, 175, 203, 255),
                             width: 2.5)),
@@ -84,8 +94,36 @@ class _LoginState extends State<Login> {
                   color: oxfordBlue, borderRadius: BorderRadius.circular(20)),
               child: TextButton(
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => const RootPage()));
+                  if (passwordController.text == passwordKey &&
+                      emailController.text == adminKey) {
+                    Navigator.push(     // Navigator.pushReplacement deletes the arrow in the top left corner
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => RootPage(
+                                email: emailController.text,
+                              )),
+                    );
+                  } else if (passwordController.text.isEmpty &&
+                      emailController.text.isNotEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("Invalid password")),
+                    );
+                  } else if (passwordController.text.isNotEmpty &&
+                      emailController.text.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("Invalid Username")),
+                    );
+                  } else if (passwordController.text.isEmpty &&
+                      emailController.text.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                          content: Text("Invalid Username and Password")),
+                    );
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("Invalid Username or Password")),
+                    );
+                  }
                 },
                 child: const Text(
                   'Login',
