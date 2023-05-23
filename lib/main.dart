@@ -1,7 +1,13 @@
+import 'package:diktat_flutter_app/home_page.dart';
+import 'package:diktat_flutter_app/login_new.dart';
 import 'package:diktat_flutter_app/login_page.dart';
+import 'package:diktat_flutter_app/profilePage/profile_page.dart';
+import 'package:diktat_flutter_app/quiz_page.dart';
 import 'package:flutter/material.dart';
+import 'analytics_page.dart';
 import 'app_icons.dart';
 import 'app_colors.dart';
+import 'diktat_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,7 +15,9 @@ void main() {
 
 class MyApp extends StatelessWidget {
   // Statless widget can not refresh while using the app
-  const MyApp({super.key, });
+  const MyApp({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,38 +37,21 @@ class RootPage extends StatefulWidget {
   const RootPage({super.key, required this.email});
 
   final String email;
-  
+
   @override
   State<RootPage> createState() => _RootPageState();
 }
 
 class _RootPageState extends State<RootPage> {
   int currentPage = 0;
-
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+
   static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Profile',
-      style: optionStyle,
-    ),
-    Text(
-      'Quiz',
-      style: optionStyle,
-    ),
-    Text(
-      'Diktat',
-      style: optionStyle,
-    ),
-    Text(
-      'Analytics',
-      style: optionStyle,
-    ),
+    HomePage(email: ""),
+    ProfilePage(),
+    QuizPage(),
+    DiktatPage(),
+    AnalyticsPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -99,8 +90,7 @@ class _RootPageState extends State<RootPage> {
             label: "Quiz",
           ),
           BottomNavigationBarItem(
-            icon: Icon(AppIcons.pen_nib, size: 19
-            ),
+            icon: Icon(AppIcons.pen_nib, size: 19),
             label: "Diktat",
           ),
           BottomNavigationBarItem(
@@ -112,5 +102,3 @@ class _RootPageState extends State<RootPage> {
     );
   }
 }
-
-
