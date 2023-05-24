@@ -46,7 +46,7 @@ class ProfileWidget extends StatelessWidget {
   }
 
   Widget buildEditIcon(Color color) => buildCircle(
-        color: Colors.white,
+        color: const Color.fromARGB(255, 249, 251, 242),
         all: 3,
         child: buildCircle(
           color: color,

@@ -1,6 +1,6 @@
+import 'package:diktat_flutter_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'app_colors.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -11,13 +11,13 @@ class LoginScreen extends StatefulWidget {
 
 const kHintTextStyle = TextStyle(
   color: Color.fromARGB(255, 14, 28, 54),
-  fontFamily: 'Roboto',
+  fontFamily: 'RobotoMono',
 );
 
 const kLabelStyle = TextStyle(
   color: Color.fromARGB(255, 14, 28, 54),
   fontWeight: FontWeight.bold,
-  fontFamily: 'Roboto',
+  fontFamily: 'RobotoMono',
 );
 
 final kBoxDecorationStyle = BoxDecoration(
@@ -52,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
             keyboardType: TextInputType.emailAddress,
             style: TextStyle(
               color: Color.fromARGB(255, 249, 251, 242),
-              fontFamily: 'Roboto',
+              fontFamily: 'RobotoMono',
             ),
             decoration: InputDecoration(
               border: InputBorder.none,
@@ -87,7 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
             obscureText: true,
             style: TextStyle(
               color: Color.fromARGB(255, 249, 251, 242),
-              fontFamily: 'Roboto',
+              fontFamily: 'RobotoMono',
             ),
             decoration: InputDecoration(
               border: InputBorder.none,
@@ -146,8 +146,15 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+ TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  String adminKey = "Admin";
+  String passwordKey = "1234";
+
   Widget _buildLoginBtn() {
     return Container(
+
       padding: const EdgeInsets.symmetric(vertical: 25.0),
       width: double.infinity,
       child: ElevatedButton(
@@ -159,7 +166,40 @@ class _LoginScreenState extends State<LoginScreen> {
           shape: MaterialStatePropertyAll(RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30.0))),
         ),
-        onPressed: () => print('Login Button Pressed'),
+        onPressed:  () {
+                    if (passwordController.text == passwordKey &&
+                        emailController.text == adminKey) {
+                      Navigator.push(
+                        // Navigator.pushReplacement deletes the arrow in the top left corner
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => RootPage(
+                                  email: emailController.text,
+                                )),
+                      );
+                    } else if (passwordController.text.isEmpty &&
+                        emailController.text.isNotEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text("Invalid password")),
+                      );
+                    } else if (passwordController.text.isNotEmpty &&
+                        emailController.text.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text("Invalid Username")),
+                      );
+                    } else if (passwordController.text.isEmpty &&
+                        emailController.text.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            content: Text("Invalid Username and Password")),
+                      );
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            content: Text("Invalid Username or Password")),
+                      );
+                    }
+                  },
         child: const Text(
           'LOGIN',
           style: TextStyle(
@@ -167,7 +207,7 @@ class _LoginScreenState extends State<LoginScreen> {
             letterSpacing: 1.5,
             fontSize: 18.0,
             fontWeight: FontWeight.bold,
-            fontFamily: 'Roboto',
+            fontFamily: 'RobotoMono',
           ),
         ),
       ),
@@ -260,7 +300,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         'Sign In',
                         style: TextStyle(
                           color: Color.fromARGB(255, 14, 28, 54),
-                          fontFamily: 'Roboto',
+                          fontFamily: 'RobotoMono',
                           fontSize: 30.0,
                           fontWeight: FontWeight.bold,
                         ),
