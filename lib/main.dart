@@ -35,7 +35,9 @@ class MyApp extends StatelessWidget {
 
 class RootPage extends StatefulWidget {
   // Stateful widgets can refresh the App while using it
-  const RootPage({super.key});  
+  const RootPage({super.key, required this.email});  
+
+  final String email;
 
   @override
   State<RootPage> createState() => _RootPageState();
@@ -46,15 +48,15 @@ class _RootPageState extends State<RootPage> {
   int currentPage = 0;
   int _selectedIndex = 0;
 
-
-  
-  static final List<Widget>_widgetOptions = <Widget>[
-    HomePage(email: ""),
+  late final List<Widget>_widgetOptions = <Widget>[
+    HomePage(email: widget.email),
     const ProfilePage(),
     const QuizPage(),
     const DiktatPage(),
     const AnalyticsPage(),
   ];
+  
+  
 
   void _onItemTapped(int index) {
     setState(() {

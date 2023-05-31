@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+
+class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.email});
 
-final String email;
-
+  final String email;
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+ @override
   Widget build(BuildContext context) {
     return Center(
       child: ElevatedButton(
         onPressed: () {
-        print(email);
+          print(widget.email);
         },
-        child: Text(email),
+        child: Text(widget.email),
       ),
     );
   }

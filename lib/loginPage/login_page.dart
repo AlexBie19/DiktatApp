@@ -1,10 +1,8 @@
 import 'package:diktat_flutter_app/main.dart';
 import 'package:flutter/material.dart';
-import 'package:diktat_flutter_app/appConstants/app_colors.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key, required this.email});
-
 
   final String email;
   @override
@@ -82,12 +80,15 @@ class _LoginState extends State<Login> {
                   obscureText: true,
                   decoration: const InputDecoration(
                       focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Color.fromARGB(255, 175, 203, 255),
-                              width: 2.5)),
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 175, 203, 255),
+                            width: 2.5),
+                      ),
                       enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Color.fromARGB(255, 175, 203, 255))),
+                        borderSide: BorderSide(
+                          color: Color.fromARGB(255, 175, 203, 255),
+                        ),
+                      ),
                       border: OutlineInputBorder(),
                       labelText: 'Password',
                       hintText: 'Enter secure password'),
@@ -107,7 +108,9 @@ class _LoginState extends State<Login> {
                 height: 50,
                 width: 250,
                 decoration: BoxDecoration(
-                    color: Colors.black, borderRadius: BorderRadius.circular(20)),
+                  color: Colors.black,
+                  borderRadius: BorderRadius.circular(20),
+                ),
                 child: TextButton(
                   onPressed: () {
                     if (passwordController.text == passwordKey &&
@@ -116,30 +119,34 @@ class _LoginState extends State<Login> {
                         // Navigator.pushReplacement deletes the arrow in the top left corner
                         context,
                         MaterialPageRoute(
-                            builder: (context) => RootPage(
-                                  email: emailController.text,
-                                )),
+                            builder: (context) => RootPage(email: emailController.text),),
                       );
                     } else if (passwordController.text.isEmpty &&
                         emailController.text.isNotEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text("Invalid password")),
+                        const SnackBar(
+                          content: Text("Invalid password"),
+                        ),
                       );
                     } else if (passwordController.text.isNotEmpty &&
                         emailController.text.isEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text("Invalid Username")),
+                        const SnackBar(
+                          content: Text("Invalid Username"),
+                        ),
                       );
                     } else if (passwordController.text.isEmpty &&
                         emailController.text.isEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
-                            content: Text("Invalid Username and Password")),
+                          content: Text("Invalid Username and Password"),
+                        ),
                       );
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
-                            content: Text("Invalid Username or Password")),
+                          content: Text("Invalid Username or Password"),
+                        ),
                       );
                     }
                   },

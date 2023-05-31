@@ -1,13 +1,13 @@
-import 'package:diktat_flutter_app/homePage/home_page.dart';
-import 'package:diktat_flutter_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../appConstants/backround_color_widget.dart';
+import '../main.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _LoginScreenState createState() => _LoginScreenState();
 }
 
@@ -171,11 +171,15 @@ class _LoginScreenState extends State<LoginScreen> {
       child: ElevatedButton(
         style: ButtonStyle(
           backgroundColor: const MaterialStatePropertyAll(
-              Color.fromARGB(255, 215, 249, 255)),
+            Color.fromARGB(255, 215, 249, 255),
+          ),
           elevation: const MaterialStatePropertyAll(5.0),
           padding: const MaterialStatePropertyAll(EdgeInsets.all(15.0)),
-          shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30.0))),
+          shape: MaterialStatePropertyAll(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30.0),
+            ),
+          ),
         ),
         onPressed: () {
           if (passwordController.text == passwordKey &&
@@ -184,7 +188,7 @@ class _LoginScreenState extends State<LoginScreen> {
               // Navigator.pushReplacement deletes the arrow in the top left corner
               context,
               MaterialPageRoute(
-                builder: (context) => HomePage(email: emailController.text),
+                builder: (context) => RootPage(email: emailController.text),
               ),
             );
           } else if (passwordController.text.isEmpty &&
