@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -12,9 +11,7 @@ final String email;
     return Center(
       child: ElevatedButton(
         onPressed: () {
-          if (kDebugMode) {
-            print(email);
-          }
+        print(email);
         },
         child: Text(email),
       ),

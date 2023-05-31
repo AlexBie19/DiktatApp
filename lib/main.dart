@@ -1,13 +1,14 @@
-import 'package:diktat_flutter_app/home_page.dart';
-import 'package:diktat_flutter_app/login_new.dart';
-import 'package:diktat_flutter_app/login_page.dart';
+import 'package:diktat_flutter_app/homePage/home_page.dart';
+import 'package:diktat_flutter_app/loginPage/login_new.dart';
+// ignore: unused_import
+import 'package:diktat_flutter_app/loginPage/login_page.dart';
 import 'package:diktat_flutter_app/profilePage/profile_page.dart';
-import 'package:diktat_flutter_app/quiz_page.dart';
+import 'package:diktat_flutter_app/quizPage/quiz_page.dart';
 import 'package:flutter/material.dart';
-import 'analytics_page.dart';
-import 'app_icons.dart';
-import 'app_colors.dart';
-import 'diktat_page.dart';
+import 'analyticsPage/analytics_page.dart';
+import 'appConstants/app_icons.dart';
+import 'appConstants/app_colors.dart';
+import 'diktatPage/diktat_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(primaryColor: const Color.fromARGB(255, 14, 25, 54)),
       initialRoute: '/',
       routes: {
-        '/': (context) => const Login(),
+        '/': (context) => const LoginScreen(),
       },
     );
   }
@@ -34,24 +35,25 @@ class MyApp extends StatelessWidget {
 
 class RootPage extends StatefulWidget {
   // Stateful widgets can refresh the App while using it
-  const RootPage({super.key, required this.email});
-
-  final String email;
+  const RootPage({super.key});  
 
   @override
   State<RootPage> createState() => _RootPageState();
 }
 
 class _RootPageState extends State<RootPage> {
+
   int currentPage = 0;
   int _selectedIndex = 0;
 
-  static const List<Widget> _widgetOptions = <Widget>[
+
+  
+  static final List<Widget>_widgetOptions = <Widget>[
     HomePage(email: ""),
-    ProfilePage(),
-    QuizPage(),
-    DiktatPage(),
-    AnalyticsPage(),
+    const ProfilePage(),
+    const QuizPage(),
+    const DiktatPage(),
+    const AnalyticsPage(),
   ];
 
   void _onItemTapped(int index) {

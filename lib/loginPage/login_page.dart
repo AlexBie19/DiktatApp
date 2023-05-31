@@ -1,10 +1,12 @@
 import 'package:diktat_flutter_app/main.dart';
 import 'package:flutter/material.dart';
-import 'package:diktat_flutter_app/app_colors.dart';
+import 'package:diktat_flutter_app/appConstants/app_colors.dart';
 
 class Login extends StatefulWidget {
-  const Login({super.key});
+  const Login({super.key, required this.email});
 
+
+  final String email;
   @override
   State<Login> createState() => _LoginState();
 }
@@ -105,7 +107,7 @@ class _LoginState extends State<Login> {
                 height: 50,
                 width: 250,
                 decoration: BoxDecoration(
-                    color: oxfordBlue, borderRadius: BorderRadius.circular(20)),
+                    color: Colors.black, borderRadius: BorderRadius.circular(20)),
                 child: TextButton(
                   onPressed: () {
                     if (passwordController.text == passwordKey &&

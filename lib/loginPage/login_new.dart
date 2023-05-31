@@ -1,6 +1,8 @@
+import 'package:diktat_flutter_app/homePage/home_page.dart';
 import 'package:diktat_flutter_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../appConstants/backround_color_widget.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -10,7 +12,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 const kHintTextStyle = TextStyle(
-  color: Color.fromARGB(255, 14, 28, 54),
+  color: Color.fromARGB(255, 249, 251, 242),
   fontFamily: 'RobotoMono',
 );
 
@@ -18,6 +20,14 @@ const kLabelStyle = TextStyle(
   color: Color.fromARGB(255, 14, 28, 54),
   fontWeight: FontWeight.bold,
   fontFamily: 'RobotoMono',
+  fontSize: 20.0,
+);
+
+const kForgotPassword = TextStyle(
+  color: Color.fromARGB(255, 14, 28, 54),
+  fontWeight: FontWeight.bold,
+  fontFamily: 'RobotoMono',
+  fontSize: 15.0,
 );
 
 final kBoxDecorationStyle = BoxDecoration(
@@ -33,7 +43,13 @@ final kBoxDecorationStyle = BoxDecoration(
 );
 
 class _LoginScreenState extends State<LoginScreen> {
-  final bool _rememberMe = false;
+  bool _rememberMe = false;
+
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  String adminKey = "Admin";
+  String passwordKey = "1234";
 
   Widget _buildEmailTF() {
     return Column(
@@ -48,13 +64,14 @@ class _LoginScreenState extends State<LoginScreen> {
           alignment: Alignment.centerLeft,
           decoration: kBoxDecorationStyle,
           height: 60.0,
-          child: const TextField(
+          child: TextFormField(
+            controller: emailController,
             keyboardType: TextInputType.emailAddress,
-            style: TextStyle(
+            style: const TextStyle(
               color: Color.fromARGB(255, 249, 251, 242),
               fontFamily: 'RobotoMono',
             ),
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               border: InputBorder.none,
               contentPadding: EdgeInsets.only(top: 14.0),
               prefixIcon: Icon(
@@ -83,13 +100,14 @@ class _LoginScreenState extends State<LoginScreen> {
           alignment: Alignment.centerLeft,
           decoration: kBoxDecorationStyle,
           height: 60.0,
-          child: const TextField(
+          child: TextFormField(
+            controller: passwordController,
             obscureText: true,
-            style: TextStyle(
+            style: const TextStyle(
               color: Color.fromARGB(255, 249, 251, 242),
               fontFamily: 'RobotoMono',
             ),
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               border: InputBorder.none,
               contentPadding: EdgeInsets.only(top: 14.0),
               prefixIcon: Icon(
@@ -112,7 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
         onPressed: () => print('Forgot Password Button Pressed'),
         child: const Text(
           'Forgot Password?',
-          style: kLabelStyle,
+          style: kForgotPassword,
         ),
       ),
     );
@@ -130,9 +148,9 @@ class _LoginScreenState extends State<LoginScreen> {
               value: _rememberMe,
               checkColor: Colors.amber,
               activeColor: const Color.fromARGB(255, 249, 251, 242),
-              onChanged: (value) {
+              onChanged: (bool? value) {
                 setState(() {
-                  value;
+                  _rememberMe = value!;
                 });
               },
             ),
@@ -146,15 +164,8 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
- TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-
-  String adminKey = "Admin";
-  String passwordKey = "1234";
-
   Widget _buildLoginBtn() {
     return Container(
-
       padding: const EdgeInsets.symmetric(vertical: 25.0),
       width: double.infinity,
       child: ElevatedButton(
@@ -166,40 +177,37 @@ class _LoginScreenState extends State<LoginScreen> {
           shape: MaterialStatePropertyAll(RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30.0))),
         ),
-        onPressed:  () {
-                    if (passwordController.text == passwordKey &&
-                        emailController.text == adminKey) {
-                      Navigator.push(
-                        // Navigator.pushReplacement deletes the arrow in the top left corner
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => RootPage(
-                                  email: emailController.text,
-                                )),
-                      );
-                    } else if (passwordController.text.isEmpty &&
-                        emailController.text.isNotEmpty) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text("Invalid password")),
-                      );
-                    } else if (passwordController.text.isNotEmpty &&
-                        emailController.text.isEmpty) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text("Invalid Username")),
-                      );
-                    } else if (passwordController.text.isEmpty &&
-                        emailController.text.isEmpty) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                            content: Text("Invalid Username and Password")),
-                      );
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                            content: Text("Invalid Username or Password")),
-                      );
-                    }
-                  },
+        onPressed: () {
+          if (passwordController.text == passwordKey &&
+              emailController.text == adminKey) {
+            Navigator.push(
+              // Navigator.pushReplacement deletes the arrow in the top left corner
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomePage(email: emailController.text),
+              ),
+            );
+          } else if (passwordController.text.isEmpty &&
+              emailController.text.isNotEmpty) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text("Invalid password")),
+            );
+          } else if (passwordController.text.isNotEmpty &&
+              emailController.text.isEmpty) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text("Invalid Username")),
+            );
+          } else if (passwordController.text.isEmpty &&
+              emailController.text.isEmpty) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text("Invalid Username and Password")),
+            );
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text("Invalid Username or Password")),
+            );
+          }
+        },
         child: const Text(
           'LOGIN',
           style: TextStyle(
@@ -270,21 +278,7 @@ class _LoginScreenState extends State<LoginScreen> {
           onTap: () => FocusScope.of(context).unfocus(),
           child: Stack(
             children: <Widget>[
-              Container(
-                height: double.infinity,
-                width: double.infinity,
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Color.fromARGB(255, 215, 249, 255),
-                      Color.fromARGB(255, 175, 203, 255),
-                    ],
-                    stops: [0.3, 0.8],
-                  ),
-                ),
-              ),
+              backgroundcolor(),
               SizedBox(
                 height: double.infinity,
                 child: SingleChildScrollView(
