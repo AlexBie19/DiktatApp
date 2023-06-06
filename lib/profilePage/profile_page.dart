@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'user.dart';
 import 'user_data.dart';
 import '../profilePage/profileWidgets/appbar_widget.dart';
 import '../profilePage/profileWidgets/button_widget.dart';
 import '../profilePage/profileWidgets/numbers_widget.dart';
 import '../profilePage/profileWidgets/profile_widget.dart';
+import '../appConstants/backround_color_widget.dart';
+import 'edit_profile_page.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -20,23 +23,36 @@ class _ProfilePageState extends State<ProfilePage> {
     const user = UserPreferences.myUser;
 
     return Scaffold(
-      appBar: buildAppBar(context),
-      body: ListView(
-        physics: const BouncingScrollPhysics(),
-        children: [
-          ProfileWidget(
-            imagePath: user.imagePath,
-            onClicked: () async {},
+      //appBar: buildAppBar(context),
+      body: AnnotatedRegion(
+        value: SystemUiOverlayStyle.light,
+        child: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: Stack(
+            children: <Widget>[
+              backgroundcolor(),
+              ListView(
+                children: <Widget>[
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  ProfileWidget(
+                    imagePath: user.imagePath,
+                    onClicked: () async {},
+                  ),
+                  const SizedBox(height: 50),
+                  buildName(user),
+                  const SizedBox(height: 24),
+                  buildUpgradeButton(),
+                  const SizedBox(height: 50, width: 60),
+                  const NumbersWidget(),
+                  const SizedBox(height: 48),
+                  buildAbout(user),
+                ],
+              ),
+            ],
           ),
-          const SizedBox(height: 24),
-          buildName(user),
-          const SizedBox(height: 24),
-          Center(child: buildUpgradeButton()),
-          const SizedBox(height: 24),
-          const NumbersWidget(),
-          const SizedBox(height: 48),
-          buildAbout(user),
-        ],
+        ),
       ),
     );
   }
@@ -55,10 +71,44 @@ class _ProfilePageState extends State<ProfilePage> {
         ],
       );
 
-  Widget buildUpgradeButton() => ButtonWidget(
-        text: 'Add Friend',
-        onClicked: () {},
-      );
+  Widget buildUpgradeButton() {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 25.0),
+      width: double.infinity,
+      //height: double.infinity,
+      child: SizedBox(
+        width: 50,
+        height: 50,
+        child: ElevatedButton(
+          style: ButtonStyle(
+            backgroundColor: const MaterialStatePropertyAll(
+              Color.fromARGB(255, 215, 249, 255),
+            ),
+            elevation: const MaterialStatePropertyAll(5.0),
+            padding: const MaterialStatePropertyAll(EdgeInsets.all(15.0)),
+            shape: MaterialStatePropertyAll(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30.0),
+              ),
+            ),
+          ),
+          onPressed: () {
+            //Navigator.push(context, MaterialPageRoute(builder: (context) => EditProfile()),);
+          },
+          child: const Text(
+            'Edit Profile',
+            style: TextStyle(
+              color: Color.fromARGB(255, 14, 28, 54),
+              letterSpacing: 1.5,
+              fontSize: 13.0,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'RobotoMono',
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 
   Widget buildAbout(User user) => Container(
         padding: const EdgeInsets.symmetric(horizontal: 48),
