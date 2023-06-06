@@ -3,16 +3,24 @@ import 'package:diktat_flutter_app/loginPage/login_new.dart';
 // ignore: unused_import
 import 'package:diktat_flutter_app/loginPage/login_page.dart';
 import 'package:diktat_flutter_app/profilePage/profile_page.dart';
-import 'package:diktat_flutter_app/quizPage/quiz_page.dart';
+import 'package:diktat_flutter_app/quizPage/page/quiz_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'analyticsPage/analytics_page.dart';
 import 'appConstants/app_icons.dart';
 import 'appConstants/app_colors.dart';
 import 'diktatPage/diktat_page.dart';
 
-void main() {
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
   runApp(const MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   // Statless widget can not refresh while using the app
@@ -44,10 +52,6 @@ class RootPage extends StatefulWidget {
 }
 
 class _RootPageState extends State<RootPage> {
-
-  int currentPage = 0;
-  int _selectedIndex = 0;
-
   late final List<Widget>_widgetOptions = <Widget>[
     HomePage(email: widget.email),
     const ProfilePage(),
@@ -55,8 +59,10 @@ class _RootPageState extends State<RootPage> {
     const DiktatPage(),
     const AnalyticsPage(),
   ];
-  
-  
+
+  int currentPage = 0;
+
+  int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -71,7 +77,21 @@ class _RootPageState extends State<RootPage> {
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
-      appBar: AppBar(),
+      appBar: AppBar(
+          foregroundColor: const Color.fromARGB(255, 14, 28, 54),
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Color.fromARGB(255, 215, 249, 255),
+                  Color.fromARGB(255, 175, 203, 255),
+                ],
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
+              ),
+            ),
+          ),
+      ),
       // Child is always needed, when you want to add something inside the widget
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: ivory,

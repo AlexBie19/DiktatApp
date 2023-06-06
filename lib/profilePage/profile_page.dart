@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'user.dart';
 import 'user_data.dart';
-import '../profilePage/profileWidgets/appbar_widget.dart';
-import '../profilePage/profileWidgets/button_widget.dart';
 import '../profilePage/profileWidgets/numbers_widget.dart';
 import '../profilePage/profileWidgets/profile_widget.dart';
 import '../appConstants/backround_color_widget.dart';
-import 'edit_profile_page.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -34,17 +31,17 @@ class _ProfilePageState extends State<ProfilePage> {
               ListView(
                 children: <Widget>[
                   const SizedBox(
-                    height: 50,
+                    height: 24,
                   ),
                   ProfileWidget(
                     imagePath: user.imagePath,
                     onClicked: () async {},
                   ),
-                  const SizedBox(height: 50),
+                  const SizedBox(height: 24),
                   buildName(user),
                   const SizedBox(height: 24),
                   buildUpgradeButton(),
-                  const SizedBox(height: 50, width: 60),
+                  const SizedBox(height: 24, width: 60),
                   const NumbersWidget(),
                   const SizedBox(height: 48),
                   buildAbout(user),
@@ -75,11 +72,11 @@ class _ProfilePageState extends State<ProfilePage> {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 25.0),
       width: double.infinity,
-      //height: double.infinity,
+      // height: 100,
       child: SizedBox(
-        width: 50,
-        height: 50,
-        child: ElevatedButton(
+        width: 20,
+        height: 48,
+        child: TextButton(
           style: ButtonStyle(
             backgroundColor: const MaterialStatePropertyAll(
               Color.fromARGB(255, 215, 249, 255),
@@ -100,7 +97,7 @@ class _ProfilePageState extends State<ProfilePage> {
             style: TextStyle(
               color: Color.fromARGB(255, 14, 28, 54),
               letterSpacing: 1.5,
-              fontSize: 13.0,
+              fontSize: 14.0,
               fontWeight: FontWeight.bold,
               fontFamily: 'RobotoMono',
             ),

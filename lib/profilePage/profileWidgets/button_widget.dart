@@ -11,7 +11,7 @@ class ButtonWidget extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => ElevatedButton(
+  Widget build(BuildContext context) => TextButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: const Color.fromARGB(255, 14, 28, 54),
           foregroundColor: const  Color.fromARGB(255, 249, 251, 242),

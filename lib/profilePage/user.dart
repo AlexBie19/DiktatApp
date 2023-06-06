@@ -13,3 +13,4 @@ class User {
     required this.isDarkMode,
   });
 }
+
