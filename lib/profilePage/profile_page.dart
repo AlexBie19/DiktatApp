@@ -5,6 +5,7 @@ import 'user_data.dart';
 import '../profilePage/profileWidgets/numbers_widget.dart';
 import '../profilePage/profileWidgets/profile_widget.dart';
 import '../appConstants/backround_color_widget.dart';
+import 'edit_profile_page.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -71,8 +72,8 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget buildUpgradeButton() {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 25.0),
-      width: double.infinity,
-      // height: 100,
+      //width: double.infinity,
+      //height: double.infinity,
       child: SizedBox(
         width: 20,
         height: 48,
