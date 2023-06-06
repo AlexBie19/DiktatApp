@@ -14,21 +14,20 @@ class OptionsWidget extends StatelessWidget {
   final Question question;
 
   Widget backgroundcolor() {
-  return Container(
-
-    decoration: const BoxDecoration(
-      gradient: LinearGradient(
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-        colors: [
-          Color.fromARGB(255, 215, 249, 255),
-          Color.fromARGB(255, 175, 203, 255),
-        ],
-        stops: [0.3, 0.8],
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Color.fromARGB(255, 215, 249, 255),
+            Color.fromARGB(255, 175, 203, 255),
+          ],
+          stops: [0.3, 0.8],
+        ),
       ),
-    ),
-  );
-}
+    );
+  }
 
   Widget buildOption(BuildContext context, Option option) {
     final color = getColorForOption(option, question);

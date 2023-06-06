@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DiktatPage extends StatelessWidget {
-  const DiktatPage
-({super.key});
+  const DiktatPage({super.key});
 
   @override
   Widget build(BuildContext context) {

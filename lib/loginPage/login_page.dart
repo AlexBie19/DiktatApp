@@ -119,7 +119,9 @@ class _LoginState extends State<Login> {
                         // Navigator.pushReplacement deletes the arrow in the top left corner
                         context,
                         MaterialPageRoute(
-                            builder: (context) => RootPage(email: emailController.text),),
+                          builder: (context) =>
+                              RootPage(email: emailController.text),
+                        ),
                       );
                     } else if (passwordController.text.isEmpty &&
                         emailController.text.isNotEmpty) {

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.email});
 
@@ -11,7 +10,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
- @override
+  @override
   Widget build(BuildContext context) {
     return Center(
       child: ElevatedButton(

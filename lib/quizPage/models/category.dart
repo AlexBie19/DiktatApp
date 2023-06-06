@@ -17,5 +17,4 @@ class Category {
   final String description;
   final IconData icon;
   final List<Question> questions;
-    
 }

@@ -21,7 +21,6 @@ Future main() async {
   runApp(const MyApp());
 }
 
-
 class MyApp extends StatelessWidget {
   // Statless widget can not refresh while using the app
   const MyApp({
@@ -43,7 +42,7 @@ class MyApp extends StatelessWidget {
 
 class RootPage extends StatefulWidget {
   // Stateful widgets can refresh the App while using it
-  const RootPage({super.key, required this.email});  
+  const RootPage({super.key, required this.email});
 
   final String email;
 
@@ -52,7 +51,7 @@ class RootPage extends StatefulWidget {
 }
 
 class _RootPageState extends State<RootPage> {
-  late final List<Widget>_widgetOptions = <Widget>[
+  late final List<Widget> _widgetOptions = <Widget>[
     HomePage(email: widget.email),
     const ProfilePage(),
     const QuizPage(),
@@ -78,19 +77,19 @@ class _RootPageState extends State<RootPage> {
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       appBar: AppBar(
-          foregroundColor: const Color.fromARGB(255, 14, 28, 54),
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color.fromARGB(255, 215, 249, 255),
-                  Color.fromARGB(255, 175, 203, 255),
-                ],
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-              ),
+        foregroundColor: const Color.fromARGB(255, 14, 28, 54),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color.fromARGB(255, 215, 249, 255),
+                Color.fromARGB(255, 175, 203, 255),
+              ],
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
             ),
           ),
+        ),
       ),
       // Child is always needed, when you want to add something inside the widget
       bottomNavigationBar: BottomNavigationBar(

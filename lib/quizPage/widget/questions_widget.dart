@@ -29,12 +29,18 @@ class QuestionsWidget extends StatelessWidget {
             const SizedBox(height: 32),
             Text(
               question.text,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color.fromARGB(255, 14, 28, 54)),
+              style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
+                  color: Color.fromARGB(255, 14, 28, 54)),
             ),
             const SizedBox(height: 8),
             const Text(
               'Choose your answer from below',
-              style: TextStyle(fontStyle: FontStyle.italic, fontSize: 16, color: Color.fromARGB(255, 14, 28, 54)),
+              style: TextStyle(
+                  fontStyle: FontStyle.italic,
+                  fontSize: 16,
+                  color: Color.fromARGB(255, 14, 28, 54)),
             ),
             const SizedBox(height: 32),
             Expanded(

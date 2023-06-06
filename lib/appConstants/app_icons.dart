@@ -11,7 +11,7 @@
 ///      fonts:
 ///       - asset: fonts/AppIcons.ttf
 ///
-/// 
+///
 /// * Font Awesome 5, Copyright (C) 2016 by Dave Gandy
 ///         Author:    Dave Gandy
 ///         License:   SIL (https://github.com/FortAwesome/Font-Awesome/blob/master/LICENSE.txt)
@@ -25,6 +25,8 @@ class AppIcons {
   static const _kFontFam = 'AppIcons';
   static const String? _kFontPkg = null;
 
-  static const IconData pen_fancy = IconData(0xf5ac, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData pen_nib = IconData(0xf5ad, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData pen_fancy =
+      IconData(0xf5ac, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData pen_nib =
+      IconData(0xf5ad, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

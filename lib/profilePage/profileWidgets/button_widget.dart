@@ -14,12 +14,11 @@ class ButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) => TextButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: const Color.fromARGB(255, 14, 28, 54),
-          foregroundColor: const  Color.fromARGB(255, 249, 251, 242),
+          foregroundColor: const Color.fromARGB(255, 249, 251, 242),
           shape: const StadiumBorder(),
           padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
         ),
         onPressed: onClicked,
         child: Text(text),
-
       );
 }

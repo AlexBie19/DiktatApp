@@ -20,16 +20,12 @@ class EditProfile extends StatefulWidget {
 }
 
 class _EditProfileState extends State<EditProfile> {
-
   late TextEditingController emailController;
   late TextEditingController nameController;
   late TextEditingController aboutController;
   late TextEditingController shoolORhjobbController;
 
   @override
-
-
-
   Widget build(BuildContext context) {
     return Scaffold(
       body: AnnotatedRegion(
@@ -39,7 +35,6 @@ class _EditProfileState extends State<EditProfile> {
           child: Stack(
             children: <Widget>[
               backgroundcolor(),
-
             ],
           ),
         ),
