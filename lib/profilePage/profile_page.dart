@@ -5,7 +5,7 @@ import 'user_data.dart';
 import '../profilePage/profileWidgets/numbers_widget.dart';
 import '../profilePage/profileWidgets/profile_widget.dart';
 import '../appConstants/backround_color_widget.dart';
-import 'edit_profile_page.dart';
+//import 'edit_profile_page.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});

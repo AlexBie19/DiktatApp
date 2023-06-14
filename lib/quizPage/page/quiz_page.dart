@@ -4,6 +4,7 @@ import '../data/categories.dart';
 import '../page/category_page.dart';
 import '../widget/category_detail_widget.dart';
 import '../widget/category_header_widget.dart';
+import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
 class QuizPage extends StatelessWidget {
   const QuizPage({super.key});
@@ -98,24 +99,20 @@ class QuizPage extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
+  Widget build(BuildContext context) => ScaffoldGradientBackground(
+        gradient: const LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Color.fromARGB(255, 215, 249, 255),
+            Color.fromARGB(255, 175, 203, 255),
+          ],
+          stops: [0.3, 0.8],
+        ),
         body: ListView(
           physics: const BouncingScrollPhysics(),
           padding: const EdgeInsets.all(16),
           children: [
-            Container(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Color.fromARGB(255, 215, 249, 255),
-                    Color.fromARGB(255, 175, 203, 255),
-                  ],
-                  stops: [0.3, 0.8],
-                ),
-              ),
-            ),
             const SizedBox(height: 8),
             buildCategories(),
             const SizedBox(height: 32),
