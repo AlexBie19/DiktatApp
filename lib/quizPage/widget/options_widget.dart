@@ -76,7 +76,7 @@ class OptionsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ListView(
-        physics: const BouncingScrollPhysics(),
+        //physics: const BouncingScrollPhysics(),
         children: Utils.heightBetween(
           question.options
               .map((option) => buildOption(context, option))

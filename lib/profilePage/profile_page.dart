@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 import 'user.dart';
 import 'user_data.dart';
 import '../profilePage/profileWidgets/numbers_widget.dart';
 import '../profilePage/profileWidgets/profile_widget.dart';
-import '../appConstants/backround_color_widget.dart';
 //import 'edit_profile_page.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -20,7 +20,16 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     const user = UserPreferences.myUser;
 
-    return Scaffold(
+    return ScaffoldGradientBackground(
+      gradient: const LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [
+          Color.fromARGB(255, 215, 249, 255),
+          Color.fromARGB(255, 175, 203, 255),
+        ],
+        stops: [0.3, 0.8],
+      ),
       //appBar: buildAppBar(context),
       body: AnnotatedRegion(
         value: SystemUiOverlayStyle.light,
@@ -28,7 +37,6 @@ class _ProfilePageState extends State<ProfilePage> {
           onTap: () => FocusScope.of(context).unfocus(),
           child: Stack(
             children: <Widget>[
-              backgroundcolor(),
               ListView(
                 children: <Widget>[
                   const SizedBox(
@@ -72,8 +80,6 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget buildUpgradeButton() {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 25.0),
-      //width: double.infinity,
-      //height: double.infinity,
       child: SizedBox(
         width: 20,
         height: 48,
@@ -83,7 +89,7 @@ class _ProfilePageState extends State<ProfilePage> {
               Color.fromARGB(255, 215, 249, 255),
             ),
             elevation: const MaterialStatePropertyAll(5.0),
-            padding: const MaterialStatePropertyAll(EdgeInsets.all(15.0)),
+            padding: const MaterialStatePropertyAll(EdgeInsets.all(15.0),),
             shape: MaterialStatePropertyAll(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30.0),

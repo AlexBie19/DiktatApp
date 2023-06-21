@@ -42,7 +42,7 @@ class QuestionNumbersWidget extends StatelessWidget {
     return SizedBox(
       height: 50,
       child: ListView.separated(
-        physics: const BouncingScrollPhysics(),
+        //physics: const BouncingScrollPhysics(),
         padding: const EdgeInsets.symmetric(horizontal: padding),
         scrollDirection: Axis.horizontal,
         separatorBuilder: (context, index) => Container(width: padding),

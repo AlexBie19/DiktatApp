@@ -6,10 +6,13 @@ import 'package:diktat_flutter_app/profilePage/profile_page.dart';
 import 'package:diktat_flutter_app/quizPage/page/quiz_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 import 'analyticsPage/analytics_page.dart';
 import 'appConstants/app_icons.dart';
 import 'appConstants/app_colors.dart';
 import 'diktatPage/diktat_page.dart';
+import 'homePage/ranking_page.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -51,6 +54,9 @@ class RootPage extends StatefulWidget {
 }
 
 class _RootPageState extends State<RootPage> {
+  int currentPage = 0;
+
+  int _selectedIndex = 0;
   late final List<Widget> _widgetOptions = <Widget>[
     HomePage(email: widget.email),
     const ProfilePage(),
@@ -58,10 +64,6 @@ class _RootPageState extends State<RootPage> {
     const DiktatPage(),
     const AnalyticsPage(),
   ];
-
-  int currentPage = 0;
-
-  int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -71,12 +73,32 @@ class _RootPageState extends State<RootPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: ivory,
+    return ScaffoldGradientBackground(
+      gradient: const LinearGradient(
+        colors: [
+          Color.fromARGB(255, 215, 249, 255),
+          Color.fromARGB(255, 175, 203, 255),
+        ],
+        begin: Alignment.topRight,
+        end: Alignment.bottomLeft,
+        stops: [0.3, 0.8],
+      ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const RankingPage(),
+                ),
+              );
+            },
+            icon: const Icon(FontAwesomeIcons.trophy)),
+        title: Text(widget.email),
+        actions: const [],
         foregroundColor: const Color.fromARGB(255, 14, 28, 54),
         flexibleSpace: Container(
           decoration: const BoxDecoration(
@@ -87,12 +109,14 @@ class _RootPageState extends State<RootPage> {
               ],
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
+              stops: [0.3, 0.8],
             ),
           ),
         ),
       ),
       // Child is always needed, when you want to add something inside the widget
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         backgroundColor: ivory,
         currentIndex: _selectedIndex,
         unselectedItemColor: oxfordBlue,

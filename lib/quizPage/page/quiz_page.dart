@@ -11,24 +11,6 @@ class QuizPage extends StatelessWidget {
 
   static const user = UserPreferences.myUser;
 
-  Widget buildWelcome(String username) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            'Hello',
-            style: TextStyle(fontSize: 16, color: Colors.white),
-          ),
-          Text(
-            username,
-            style: const TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-          )
-        ],
-      );
-
   Widget buildCategories() => SizedBox(
         height: 300,
         child: GridView(
@@ -80,24 +62,6 @@ class QuizPage extends StatelessWidget {
         ],
       );
 
-  Widget backgroundcolor() {
-    return Container(
-      height: double.infinity,
-      width: double.infinity,
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Color.fromARGB(255, 215, 249, 255),
-            Color.fromARGB(255, 175, 203, 255),
-          ],
-          stops: [0.3, 0.8],
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) => ScaffoldGradientBackground(
         gradient: const LinearGradient(
@@ -110,7 +74,7 @@ class QuizPage extends StatelessWidget {
           stops: [0.3, 0.8],
         ),
         body: ListView(
-          physics: const BouncingScrollPhysics(),
+          //physics: const BouncingScrollPhysics(),
           padding: const EdgeInsets.all(16),
           children: [
             const SizedBox(height: 8),

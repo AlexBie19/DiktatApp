@@ -17,6 +17,14 @@ class CategoryDetailWidget extends StatelessWidget {
           color: category.backgroundColor,
           borderRadius: BorderRadius.circular(15),
         ),
+        child: ListView(
+          children: [
+            const SizedBox(
+              height: 50,
+            ),
+            Icon(category.icon, size: 60),
+          ],
+        ),
       );
 
   @override

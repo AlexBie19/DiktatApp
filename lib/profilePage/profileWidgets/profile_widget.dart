@@ -29,17 +29,16 @@ class ProfileWidget extends StatelessWidget {
   }
 
   Widget buildImage() {
-    final image = NetworkImage(imagePath);
+    const String image = 'assets/images/Doktor.jpg';
 
     return ClipOval(
       child: Material(
         color: Colors.transparent,
-        child: Ink.image(
-          image: image,
+        child: Image.asset(
+          'assets/images/Doktor.jpg',
           fit: BoxFit.cover,
           width: 128,
           height: 128,
-          child: InkWell(onTap: onClicked),
         ),
       ),
     );

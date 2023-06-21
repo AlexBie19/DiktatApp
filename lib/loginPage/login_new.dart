@@ -184,7 +184,7 @@ class _LoginScreenState extends State<LoginScreen> {
         onPressed: () {
           if (passwordController.text == passwordKey &&
               emailController.text == adminKey) {
-            Navigator.push(
+            Navigator.pushReplacement(
               // Navigator.pushReplacement deletes the arrow in the top left corner
               context,
               MaterialPageRoute(
