@@ -30,6 +30,7 @@ class _HomePageState extends State<HomePage> {
               .toList(),
         ),
       );
+      // Need more category pags to root to 
 
   Widget buildPopular(BuildContext context) => Column(
         children: [
@@ -44,7 +45,7 @@ class _HomePageState extends State<HomePage> {
           SizedBox(
             height: 240,
             child: ListView(
-              physics: const BouncingScrollPhysics(),
+              //physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
               children: categoriesHomePage
                   .map(
@@ -92,7 +93,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             const SizedBox(
-              height: 18,
+              height: 5,
             ),
             const Text(
               "Konsonanten werden nach einem kurz gesprochenen Vokal verdoppelt",

@@ -40,7 +40,7 @@ class QuizPage extends StatelessWidget {
           SizedBox(
             height: 240,
             child: ListView(
-              physics: const BouncingScrollPhysics(),
+              //physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
               children: categories
                   .map(
@@ -49,7 +49,7 @@ class QuizPage extends StatelessWidget {
                       onSelectedCategory: (category) {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) =>
+                            builder: (context) => // Need to say here which page you wan to jump
                                 CategoryPage(category: category),
                           ),
                         );
