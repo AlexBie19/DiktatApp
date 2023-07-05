@@ -98,14 +98,16 @@ class _RootPageState extends State<RootPage> {
             },
             icon: const Icon(FontAwesomeIcons.trophy)),
         title: Text(widget.email),
-        actions:const  [
-            Text(" 1110",
+        actions: const [
+          Text(
+            " 1110",
             style: TextStyle(
               letterSpacing: 2,
               height: 2,
               fontSize: 25,
-              color:Color.fromARGB(255, 14, 28, 54),
-            )),
+              color: Color.fromARGB(255, 14, 28, 54),
+            ),
+          ),
         ],
         foregroundColor: const Color.fromARGB(255, 14, 28, 54),
         flexibleSpace: Container(

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
-import '../diktatPage/schoolpages/arbeit_page.dart';
-import '../diktatPage/schoolpages/fachoberschule_page.dart';
-import '../diktatPage/schoolpages/grunschule_page.dart';
-import '../diktatPage/schoolpages/realschule_page.dart';
+import '../diktatPage/schoolpages/fake_page.dart';
+
 
 
 class DiktatPage extends StatefulWidget {
@@ -14,6 +12,8 @@ class DiktatPage extends StatefulWidget {
 }
 
 class _DiktatPageState extends State<DiktatPage> {
+
+
   Widget buttonsSchools(String schoolText) {
     return SizedBox(
         height: 50,
@@ -41,7 +41,7 @@ class _DiktatPageState extends State<DiktatPage> {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const WorkingPage(),
+                  builder: (context) => const FakePage(),
                 ),
             );
           },
@@ -62,7 +62,8 @@ class _DiktatPageState extends State<DiktatPage> {
       ),
       body: Column(
         children: [
-          const SizedBox(height: 32),
+          const SizedBox(height: 300),
+          const SizedBox(height: 32, width: double.infinity,),
           buttonsSchools("Grunschule"),
           const SizedBox(
             height: 24,

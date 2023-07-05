@@ -3,14 +3,12 @@ import '../models/question.dart';
 
 final questions = [
   Question(
-    text: 'Which planet is the hottest in the solar system?',
+    text: 'Schreibt man nach dem Komma, das immer mit 2 ss?',
     options: [
-      const Option(code: 'A', text: 'Earth', isCorrect: false),
-      const Option(code: 'B', text: 'Venus', isCorrect: true),
-      const Option(code: 'C', text: 'Jupiter', isCorrect: false),
-      const Option(code: 'D', text: 'Saturn', isCorrect: false),
+      const Option(code: 'A', text: 'Ja', isCorrect: false),
+      const Option(code: 'B', text: 'Nein', isCorrect: true),
     ],
-    solution: 'Venus is the hottest planet in the solar system',
+    solution: 'Dies Stimmt nicht, denn je nach Satzbau, kann es auch nur ein s sein',
     selectedOption: const Option(code: '', text: '', isCorrect: false),
   ),
   Question(
