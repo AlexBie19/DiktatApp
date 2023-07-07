@@ -1,4 +1,3 @@
-import 'package:diktat_flutter_app/analyticsPage/analytics_page.dart';
 import 'package:diktat_flutter_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

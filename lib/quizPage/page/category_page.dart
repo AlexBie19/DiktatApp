@@ -49,9 +49,18 @@ class _CategoryPageState extends State<CategoryPage> {
           surfaceTintColor: const Color.fromARGB(255, 14, 28, 54),
           foregroundColor: const Color.fromARGB(255, 14, 28, 54),
           title: Text(widget.category.categoryName),
-          actions: const [
-            Icon(Icons.filter_alt_outlined),
-            SizedBox(width: 16),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text(
+                          'Bitte Swipen um zur nächsten Frage zu gelangen'),
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.explore)),
+            const SizedBox(width: 16),
           ],
           flexibleSpace: Container(
             decoration: const BoxDecoration(
